@@ -1,0 +1,11 @@
+Bookbinding: probeheft.pdf
+1 Lagen / 2 Bögen / 0 zusätzliche Leerseiten
+
+Eine PDF-Seite pro Blattseite, tatsächliche Größe / 100 %.
+Broschürendruck und Zwei-Seiten-Druck im Druckdialog ausschalten.
+Duplex: Bei unveränderter Bogenausrichtung normalerweise lange Kante.
+PDF-Seiten in der vorgegebenen Reihenfolge drucken.
+
+Zuerst ein kleines Heft zur Prüfung von Papierweg und Drehung drucken.
+Jede Lage separat falten; anschließend in Lagenreihenfolge zusammentragen.
+Der Druckplan zählt die Quellseiten ab 1; null steht für eine Leerseite.

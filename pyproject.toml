@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bookbinding"
+version = "0.1.0"
+description = "PDF-Ausschießen in Lagen für die Fadenheftung"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["pypdf[crypto]>=7.1,<8"]
+
+[project.gui-scripts]
+bookbinding = "bookbinding.gui:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "pymupdf>=1.26,<2", "ruff>=0.14,<1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bookbinding"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["gui: requires a macOS desktop session and BOOKBINDING_GUI_TESTS=1"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["legacy"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

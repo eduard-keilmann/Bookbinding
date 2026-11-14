@@ -1,0 +1,50 @@
+{
+  "source": "probeheft.pdf",
+  "source_pages": 8,
+  "mode": "signatures",
+  "paper_size": "A4",
+  "paper_size_mm": [
+    210.0,
+    297.0
+  ],
+  "book_size_mm": [
+    148.5,
+    210.0
+  ],
+  "keep_proportions": true,
+  "duplex": true,
+  "rotate_backs": true,
+  "flyleaf": false,
+  "sheets_per_signature": [
+    2
+  ],
+  "total_sheets": 2,
+  "blank_book_pages": 0,
+  "jobs": [
+    {
+      "file": "lage-001-duplex.pdf",
+      "sides": [
+        {
+          "left": 8,
+          "right": 1,
+          "back": false
+        },
+        {
+          "left": 2,
+          "right": 7,
+          "back": true
+        },
+        {
+          "left": 6,
+          "right": 3,
+          "back": false
+        },
+        {
+          "left": 4,
+          "right": 5,
+          "back": true
+        }
+      ]
+    }
+  ]
+}

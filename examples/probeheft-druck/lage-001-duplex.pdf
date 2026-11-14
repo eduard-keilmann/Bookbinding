@@ -1,0 +1,912 @@
+%PDF-1.3
+%‚„œ”
+1 0 obj
+<<
+/Producer (pypdf)
+/Title (lage\055001\055duplex)
+/Creator (Bookbinding Python)
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Count 4
+/Kids [ 4 0 R 10 0 R 15 0 R 20 0 R ]
+>>
+endobj
+3 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/helv 5 0 R
+/helv-0 5 0 R
+>>
+>>
+/MediaBox [ 0.0 0.0 595.275591 841.889764 ]
+/Parent 2 0 R
+/Contents 7 0 R
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+>>
+endobj
+6 0 obj
+null
+endobj
+7 0 obj
+[ 8 0 R 9 0 R ]
+endobj
+8 0 obj
+<<
+/Length 1033
+>>
+stream
+q
+q
+0.0 -0.99999996 0.99999996 0.0 0.0000080808077 841.889764 cm
+0.0 0.0 420.9449 595.2756 re
+W
+n
+q
+1 0.0 0.0 1 0.0 0.0 cm
+q
+24 24 372.9449 547.2756 re
+0.8 w
+h
+0.2 0.35 0.5 RG
+S
+Q
+q
+210.47245 505.27558 m
+210.47245 550.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+202.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+218.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+BT
+1 0 0 1 187.80045 473.07557 Tm
+/helv 16 Tf
+0.1 0.35 0.6 RG
+0.1 0.35 0.6 rg
+[ (OBEN) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 158.80394 251.30057 Tm
+/helv 13 Tf
+[ (Buchseite 8 von 8) ] TJ
+1 0 0 1 114.40244 232.09893 Tm
+/helv 13 Tf
+[ (SYNTHETISCHES PROBEHEFT) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 141.54744 139.52558 Tm
+/helv 10 Tf
+[ (Zwei Boegen ineinander falten\056) ] TJ
+1 0 0 1 111.53244 124.75507 Tm
+/helv 10 Tf
+[ (Danach Seiten 1 bis 8 der Reihe nach lesen\056) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 40 41.999986 Tm
+/helv 9 Tf
+[ (LINKS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 345.9449 41.999986 Tm
+/helv 9 Tf
+[ (RECHTS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 183.78444 305.27558 Tm
+/helv 96 Tf
+[ (8) ] TJ
+ET
+Q
+Q
+Q
+
+Q
+
+endstream
+endobj
+9 0 obj
+<<
+/Length 1044
+>>
+stream
+q
+0.0 -0.99999996 0.99999996 0.0 0.0000080808077 420.944882 cm
+0.0 0.0 420.9449 595.2756 re
+W
+n
+q
+1 0.0 0.0 1 0.0 0.0 cm
+q
+24 24 372.9449 547.2756 re
+0.8 w
+h
+0.2 0.35 0.5 RG
+S
+Q
+q
+210.47245 505.27558 m
+210.47245 550.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+202.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+218.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+BT
+1 0 0 1 187.80045 473.07557 Tm
+/helv-0 16 Tf
+0.1 0.35 0.6 RG
+0.1 0.35 0.6 rg
+[ (OBEN) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 158.80394 251.30057 Tm
+/helv-0 13 Tf
+[ (Buchseite 1 von 8) ] TJ
+1 0 0 1 114.40244 232.09893 Tm
+/helv-0 13 Tf
+[ (SYNTHETISCHES PROBEHEFT) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 141.54744 139.52558 Tm
+/helv-0 10 Tf
+[ (Zwei Boegen ineinander falten\056) ] TJ
+1 0 0 1 111.53244 124.75507 Tm
+/helv-0 10 Tf
+[ (Danach Seiten 1 bis 8 der Reihe nach lesen\056) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 40 41.999986 Tm
+/helv-0 9 Tf
+[ (LINKS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 345.9449 41.999986 Tm
+/helv-0 9 Tf
+[ (RECHTS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 183.78444 305.27558 Tm
+/helv-0 96 Tf
+[ (1) ] TJ
+ET
+Q
+Q
+Q
+
+endstream
+endobj
+10 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/helv 5 0 R
+/helv-0 5 0 R
+>>
+>>
+/MediaBox [ 0.0 0.0 595.275591 841.889764 ]
+/Parent 2 0 R
+/Contents 12 0 R
+>>
+endobj
+11 0 obj
+null
+endobj
+12 0 obj
+<<
+/Length 2119
+>>
+stream
+q
+-1 0.0 0.0 -1 595.275591 841.889764 cm
+q
+q
+0.0 -0.99999996 0.99999996 0.0 0.0000080808077 841.889764 cm
+0.0 0.0 420.9449 595.2756 re
+W
+n
+q
+1 0.0 0.0 1 0.0 0.0 cm
+q
+24 24 372.9449 547.2756 re
+0.8 w
+h
+0.2 0.35 0.5 RG
+S
+Q
+q
+210.47245 505.27558 m
+210.47245 550.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+202.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+218.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+BT
+1 0 0 1 187.80045 473.07557 Tm
+/helv 16 Tf
+0.1 0.35 0.6 RG
+0.1 0.35 0.6 rg
+[ (OBEN) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 158.80394 251.30057 Tm
+/helv 13 Tf
+[ (Buchseite 2 von 8) ] TJ
+1 0 0 1 114.40244 232.09893 Tm
+/helv 13 Tf
+[ (SYNTHETISCHES PROBEHEFT) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 141.54744 139.52558 Tm
+/helv 10 Tf
+[ (Zwei Boegen ineinander falten\056) ] TJ
+1 0 0 1 111.53244 124.75507 Tm
+/helv 10 Tf
+[ (Danach Seiten 1 bis 8 der Reihe nach lesen\056) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 40 41.999986 Tm
+/helv 9 Tf
+[ (LINKS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 345.9449 41.999986 Tm
+/helv 9 Tf
+[ (RECHTS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 183.78444 305.27558 Tm
+/helv 96 Tf
+[ (2) ] TJ
+ET
+Q
+Q
+Q
+Q
+q
+0.0 -0.99999996 0.99999996 0.0 0.0000080808077 420.944882 cm
+0.0 0.0 420.9449 595.2756 re
+W
+n
+q
+1 0.0 0.0 1 0.0 0.0 cm
+q
+24 24 372.9449 547.2756 re
+0.8 w
+h
+0.2 0.35 0.5 RG
+S
+Q
+q
+210.47245 505.27558 m
+210.47245 550.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+202.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+218.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+BT
+1 0 0 1 187.80045 473.07557 Tm
+/helv-0 16 Tf
+0.1 0.35 0.6 RG
+0.1 0.35 0.6 rg
+[ (OBEN) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 158.80394 251.30057 Tm
+/helv-0 13 Tf
+[ (Buchseite 7 von 8) ] TJ
+1 0 0 1 114.40244 232.09893 Tm
+/helv-0 13 Tf
+[ (SYNTHETISCHES PROBEHEFT) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 141.54744 139.52558 Tm
+/helv-0 10 Tf
+[ (Zwei Boegen ineinander falten\056) ] TJ
+1 0 0 1 111.53244 124.75507 Tm
+/helv-0 10 Tf
+[ (Danach Seiten 1 bis 8 der Reihe nach lesen\056) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 40 41.999986 Tm
+/helv-0 9 Tf
+[ (LINKS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 345.9449 41.999986 Tm
+/helv-0 9 Tf
+[ (RECHTS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 183.78444 305.27558 Tm
+/helv-0 96 Tf
+[ (7) ] TJ
+ET
+Q
+Q
+Q
+Q
+
+endstream
+endobj
+13 0 obj
+null
+endobj
+14 0 obj
+null
+endobj
+15 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/helv 5 0 R
+/helv-0 5 0 R
+>>
+>>
+/MediaBox [ 0.0 0.0 595.275591 841.889764 ]
+/Parent 2 0 R
+/Contents 17 0 R
+>>
+endobj
+16 0 obj
+null
+endobj
+17 0 obj
+[ 18 0 R 19 0 R ]
+endobj
+18 0 obj
+<<
+/Length 1033
+>>
+stream
+q
+q
+0.0 -0.99999996 0.99999996 0.0 0.0000080808077 841.889764 cm
+0.0 0.0 420.9449 595.2756 re
+W
+n
+q
+1 0.0 0.0 1 0.0 0.0 cm
+q
+24 24 372.9449 547.2756 re
+0.8 w
+h
+0.2 0.35 0.5 RG
+S
+Q
+q
+210.47245 505.27558 m
+210.47245 550.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+202.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+218.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+BT
+1 0 0 1 187.80045 473.07557 Tm
+/helv 16 Tf
+0.1 0.35 0.6 RG
+0.1 0.35 0.6 rg
+[ (OBEN) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 158.80394 251.30057 Tm
+/helv 13 Tf
+[ (Buchseite 6 von 8) ] TJ
+1 0 0 1 114.40244 232.09893 Tm
+/helv 13 Tf
+[ (SYNTHETISCHES PROBEHEFT) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 141.54744 139.52558 Tm
+/helv 10 Tf
+[ (Zwei Boegen ineinander falten\056) ] TJ
+1 0 0 1 111.53244 124.75507 Tm
+/helv 10 Tf
+[ (Danach Seiten 1 bis 8 der Reihe nach lesen\056) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 40 41.999986 Tm
+/helv 9 Tf
+[ (LINKS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 345.9449 41.999986 Tm
+/helv 9 Tf
+[ (RECHTS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 183.78444 305.27558 Tm
+/helv 96 Tf
+[ (6) ] TJ
+ET
+Q
+Q
+Q
+
+Q
+
+endstream
+endobj
+19 0 obj
+<<
+/Length 1044
+>>
+stream
+q
+0.0 -0.99999996 0.99999996 0.0 0.0000080808077 420.944882 cm
+0.0 0.0 420.9449 595.2756 re
+W
+n
+q
+1 0.0 0.0 1 0.0 0.0 cm
+q
+24 24 372.9449 547.2756 re
+0.8 w
+h
+0.2 0.35 0.5 RG
+S
+Q
+q
+210.47245 505.27558 m
+210.47245 550.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+202.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+218.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+BT
+1 0 0 1 187.80045 473.07557 Tm
+/helv-0 16 Tf
+0.1 0.35 0.6 RG
+0.1 0.35 0.6 rg
+[ (OBEN) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 158.80394 251.30057 Tm
+/helv-0 13 Tf
+[ (Buchseite 3 von 8) ] TJ
+1 0 0 1 114.40244 232.09893 Tm
+/helv-0 13 Tf
+[ (SYNTHETISCHES PROBEHEFT) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 141.54744 139.52558 Tm
+/helv-0 10 Tf
+[ (Zwei Boegen ineinander falten\056) ] TJ
+1 0 0 1 111.53244 124.75507 Tm
+/helv-0 10 Tf
+[ (Danach Seiten 1 bis 8 der Reihe nach lesen\056) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 40 41.999986 Tm
+/helv-0 9 Tf
+[ (LINKS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 345.9449 41.999986 Tm
+/helv-0 9 Tf
+[ (RECHTS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 183.78444 305.27558 Tm
+/helv-0 96 Tf
+[ (3) ] TJ
+ET
+Q
+Q
+Q
+
+endstream
+endobj
+20 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/helv 5 0 R
+/helv-0 5 0 R
+>>
+>>
+/MediaBox [ 0.0 0.0 595.275591 841.889764 ]
+/Parent 2 0 R
+/Contents 22 0 R
+>>
+endobj
+21 0 obj
+null
+endobj
+22 0 obj
+<<
+/Length 2119
+>>
+stream
+q
+-1 0.0 0.0 -1 595.275591 841.889764 cm
+q
+q
+0.0 -0.99999996 0.99999996 0.0 0.0000080808077 841.889764 cm
+0.0 0.0 420.9449 595.2756 re
+W
+n
+q
+1 0.0 0.0 1 0.0 0.0 cm
+q
+24 24 372.9449 547.2756 re
+0.8 w
+h
+0.2 0.35 0.5 RG
+S
+Q
+q
+210.47245 505.27558 m
+210.47245 550.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+202.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+218.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+BT
+1 0 0 1 187.80045 473.07557 Tm
+/helv 16 Tf
+0.1 0.35 0.6 RG
+0.1 0.35 0.6 rg
+[ (OBEN) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 158.80394 251.30057 Tm
+/helv 13 Tf
+[ (Buchseite 4 von 8) ] TJ
+1 0 0 1 114.40244 232.09893 Tm
+/helv 13 Tf
+[ (SYNTHETISCHES PROBEHEFT) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 141.54744 139.52558 Tm
+/helv 10 Tf
+[ (Zwei Boegen ineinander falten\056) ] TJ
+1 0 0 1 111.53244 124.75507 Tm
+/helv 10 Tf
+[ (Danach Seiten 1 bis 8 der Reihe nach lesen\056) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 40 41.999986 Tm
+/helv 9 Tf
+[ (LINKS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 345.9449 41.999986 Tm
+/helv 9 Tf
+[ (RECHTS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 183.78444 305.27558 Tm
+/helv 96 Tf
+[ (4) ] TJ
+ET
+Q
+Q
+Q
+Q
+q
+0.0 -0.99999996 0.99999996 0.0 0.0000080808077 420.944882 cm
+0.0 0.0 420.9449 595.2756 re
+W
+n
+q
+1 0.0 0.0 1 0.0 0.0 cm
+q
+24 24 372.9449 547.2756 re
+0.8 w
+h
+0.2 0.35 0.5 RG
+S
+Q
+q
+210.47245 505.27558 m
+210.47245 550.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+202.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+210.47245 550.2756 m
+218.47245 538.2756 l
+2 w
+0.1 0.35 0.6 RG
+S
+Q
+q
+BT
+1 0 0 1 187.80045 473.07557 Tm
+/helv-0 16 Tf
+0.1 0.35 0.6 RG
+0.1 0.35 0.6 rg
+[ (OBEN) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 158.80394 251.30057 Tm
+/helv-0 13 Tf
+[ (Buchseite 5 von 8) ] TJ
+1 0 0 1 114.40244 232.09893 Tm
+/helv-0 13 Tf
+[ (SYNTHETISCHES PROBEHEFT) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 141.54744 139.52558 Tm
+/helv-0 10 Tf
+[ (Zwei Boegen ineinander falten\056) ] TJ
+1 0 0 1 111.53244 124.75507 Tm
+/helv-0 10 Tf
+[ (Danach Seiten 1 bis 8 der Reihe nach lesen\056) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 40 41.999986 Tm
+/helv-0 9 Tf
+[ (LINKS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 345.9449 41.999986 Tm
+/helv-0 9 Tf
+[ (RECHTS) ] TJ
+ET
+Q
+q
+BT
+1 0 0 1 183.78444 305.27558 Tm
+/helv-0 96 Tf
+[ (5) ] TJ
+ET
+Q
+Q
+Q
+Q
+
+endstream
+endobj
+23 0 obj
+null
+endobj
+24 0 obj
+null
+endobj
+xref
+0 25
+0000000000 65535 f 
+0000000015 00000 n 
+0000000115 00000 n 
+0000000195 00000 n 
+0000000244 00000 n 
+0000000406 00000 n 
+0000000503 00000 n 
+0000000523 00000 n 
+0000000554 00000 n 
+0000001639 00000 n 
+0000002735 00000 n 
+0000002899 00000 n 
+0000002920 00000 n 
+0000005092 00000 n 
+0000005113 00000 n 
+0000005134 00000 n 
+0000005298 00000 n 
+0000005319 00000 n 
+0000005353 00000 n 
+0000006439 00000 n 
+0000007536 00000 n 
+0000007700 00000 n 
+0000007721 00000 n 
+0000009893 00000 n 
+0000009914 00000 n 
+trailer
+<<
+/Size 25
+/Root 3 0 R
+/Info 1 0 R
+>>
+startxref
+9935
+%%EOF
