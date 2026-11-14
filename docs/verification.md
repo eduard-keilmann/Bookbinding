@@ -14,8 +14,9 @@ keine persönlichen Buch-PDFs umgeschrieben oder als Testfixtures übernommen.
 ## Tatsächlich ausgeführte Prüfungen
 
 `BOOKBINDING_GUI_TESTS=1 .venv/bin/pytest --tb=short`:
-**97 bestanden**, davon 65 Prüfungen der Seitenplanung, 30 PDF-Integrationstests
-und zwei Tests mit echten Tk-Widgets und einem Export im Hintergrundthread.
+**103 bestanden**, davon 65 Prüfungen der Seitenplanung, 30 PDF-Integrationstests,
+zwei Tests mit echten Tk-Widgets und einem Export im Hintergrundthread sowie
+sechs Prüfungen der Plattformintegration und des Linux-Starters.
 Tk benötigt Zugriff auf die macOS-Desktop-Sitzung; die GUI-Tests wurden deshalb
 außerhalb der Ausführungssandbox ausgeführt.
 
@@ -45,6 +46,12 @@ Abstände sind vorhanden und ohne Abschneiden. Die Fenstermaße und Positionen
 der Hauptbedienelemente wurden in einer echten Tk-Sitzung auf Überlauf geprüft.
 
 ## Grenzen
+
+- Plattformpriorität: macOS zuerst, Linux danach; Windows wird nicht unterstützt.
+  Der macOS-Starter blieb bei der Linux-Ergänzung unverändert. Linux-Ordneröffner
+  wurden mit simulierten Programmverfügbarkeiten geprüft; der POSIX-Starter mit
+  einem Testinterpreter aus einem anderen Verzeichnis und einem Projektpfad mit
+  Leerzeichen. Kein vollständiger Test auf einem echten Linux-Desktop.
 
 - Kein physischer Probeausdruck: Papierweg, Duplex-Treiber und Wiedereinlegen
   müssen am tatsächlichen Drucker geprüft werden.

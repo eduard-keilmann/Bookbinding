@@ -1,6 +1,7 @@
 """Small German desktop interface; PDF work runs outside the Tk event loop."""
 
 import re
+import shutil
 import subprocess
 import sys
 import tkinter as tk
@@ -356,8 +357,23 @@ class BookbindingApp:
     def _open_output(self) -> None:
         if self.last_output is None:
             return
-        command = "open" if sys.platform == "darwin" else "xdg-open"
-        subprocess.Popen([command, str(self.last_output)])
+        if sys.platform == "darwin":
+            command = ["open"]
+        elif shutil.which("xdg-open"):
+            command = ["xdg-open"]
+        elif shutil.which("gio"):
+            command = ["gio", "open"]
+        else:
+            messagebox.showerror(
+                "Ordner öffnen",
+                f"Kein Ordneröffner gefunden (xdg-open oder gio).\nAusgabe: {self.last_output}",
+                parent=self.root,
+            )
+            return
+        try:
+            subprocess.Popen([*command, str(self.last_output)])
+        except OSError as error:
+            messagebox.showerror("Ordner öffnen", str(error), parent=self.root)
 
     def _close(self) -> None:
         if self.busy:

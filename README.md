@@ -5,6 +5,8 @@ Python-3-Anwendung mit deutscher Desktop-Oberfläche.
 
 ## Starten
 
+Plattformpriorität: **macOS zuerst, Linux danach**. Windows wird nicht unterstützt.
+
 Unter macOS `Bookbinding starten.command` doppelklicken. Die lokale
 Python-Umgebung wird mit uv eingerichtet, falls sie noch fehlt.
 Python ab 3.11 mit Tkinter und [uv](https://docs.astral.sh/uv/) werden benötigt.
@@ -20,6 +22,31 @@ Tkinter gehört zur Python-Installation. Auf diesem Mac funktioniert die
 vorhandene Python-3.11-Installation mit Tkinter; die Homebrew-Installation
 von Python 3.12 hat derzeit kein `_tkinter`. Der macOS-Starter bevorzugt
 deshalb die bereits eingerichtete Projektumgebung.
+
+### Linux
+
+Python ab 3.11 mit Tkinter, uv und eine grafische Desktop-Sitzung werden benötigt.
+Tkinter gegebenenfalls über die Paketverwaltung der Distribution installieren.
+Mit `python3 -m tkinter` lässt sich die Installation samt Fensterzugriff prüfen
+([Python-Dokumentation](https://docs.python.org/3/library/tkinter.html)).
+
+Aus dem Projektverzeichnis starten:
+
+```sh
+./bookbinding-linux.sh
+```
+
+Der Starter nutzt eine vorhandene `.venv`; andernfalls richtet uv die Umgebung
+mit dem gefundenen System-Python ein. Automatische Python-Downloads bleiben
+deaktiviert, damit die geprüfte Tkinter-Installation verwendet wird
+([uv-Dokumentation](https://docs.astral.sh/uv/concepts/python-versions/)).
+Die erste Einrichtung benötigt Netzwerkzugriff für die Projektpakete.
+Eine macOS-`.venv` nicht nach Linux kopieren, sondern dort neu einrichten.
+
+„Ausgabe öffnen“ nutzt unter Linux `xdg-open`, ersatzweise `gio open`.
+Fehlen beide Programme, zeigt die Anwendung den Ausgabeordner in einer Meldung.
+Die Linux-Zweige sind automatisiert geprüft; ein vollständiger Start auf einem
+echten Linux-Desktop wurde bisher nicht geprüft. macOS bleibt die primär geprüfte Plattform.
 
 ## Begriffe und Einstellungen
 

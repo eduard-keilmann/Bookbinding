@@ -21,7 +21,7 @@ packages = ["src/bookbinding"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = ["gui: requires a macOS desktop session and BOOKBINDING_GUI_TESTS=1"]
+markers = ["gui: requires a desktop session and BOOKBINDING_GUI_TESTS=1"]
 
 [tool.ruff]
 target-version = "py311"
