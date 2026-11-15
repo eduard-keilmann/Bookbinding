@@ -253,11 +253,12 @@ class BookbindingApp:
             self.about_window.lift()
             return
         if self._about_image is None:
-            image_path = Path(__file__).parent / "assets" / "bookbinding.png"
+            image_path = Path(__file__).parent / "assets" / "bookbinding-about.png"
             # Load the PNG bytes explicitly; native file loading can substitute an app icon.
-            image = tk.PhotoImage(master=self.root, data=image_path.read_bytes(), format="png")
-            scale = max(1, (max(image.width(), image.height()) + 191) // 192)
-            self._about_image = image.subsample(scale)
+            # Use the antialiased display-size asset; Tk subsampling produces jagged edges.
+            self._about_image = tk.PhotoImage(
+                master=self.root, data=image_path.read_bytes(), format="png"
+            )
 
         dialog = tk.Toplevel(self.root)
         self.about_window = dialog

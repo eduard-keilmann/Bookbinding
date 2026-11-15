@@ -114,7 +114,7 @@ def test_about_menu_shows_illustration_and_author(app, language, title, credit, 
     assert content.nametowidget("close")["text"] == close_label
     illustration = content.winfo_children()[0]
     assert str(illustration["image"])
-    # The bundled 1254 px illustration becomes 180 px after integer subsampling.
+    # The antialiased display asset is loaded at its native 180 px size.
     # Native file loading previously substituted a 716 px application icon.
     assert app._about_image.width() == 180
     assert app._about_image.height() == 180
