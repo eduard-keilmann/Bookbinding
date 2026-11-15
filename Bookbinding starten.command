@@ -19,7 +19,4 @@ else
     exit 1
 fi
 
-if [[ -x /Users/Eddie/.venvs/base/bin/python3 ]]; then
-    exec "$bookbinding_uv" run --locked --no-dev --python /Users/Eddie/.venvs/base/bin/python3 python -m bookbinding
-fi
 exec "$bookbinding_uv" run --locked --no-dev python -m bookbinding

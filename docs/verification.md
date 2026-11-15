@@ -88,3 +88,40 @@ Tk session. No screenshot test of the interface was performed.
 
 The layout assumes left-bound books read from left to right, with four book
 pages per folded sheet. Paper thickness is not compensated for.
+
+## macOS runtime comparison: 15 November 2026
+
+The previous environment used Python 3.11.0 with Tk 8.6.12 (Aqua) on macOS
+15.8.1. Mouse interaction was unreliable while keyboard input still worked.
+The same application was tested in isolated environments with Tk 8.6.14
+and Tk 9.0.3. The user confirmed substantially more reliable interaction in
+both. With Tk 9, the user still observed that the first reopening of a
+combobox after selecting an item required a second click; later openings
+worked with one click. That remaining issue has not been resolved.
+
+The full suite passed under Python 3.11.15 with Tk 9.0.3: 114 tests. A separate
+startup and sample export check passed in the replacement project environment.
+The first Tk 8.6.14 test run had one startup error locating init.tcl; 113 tests
+passed. That run is not counted as a complete pass.
+
+The project now selects Python 3.11.15 through .python-version. The macOS
+launcher no longer explicitly selects the old machine-specific interpreter.
+The previous environment was preserved at
+/private/tmp/bookbinding-venv-before-tk-update for rollback. This temporary
+backup is not intended as permanent storage.
+
+A Homebrew installation attempt could not find a binary package and stopped;
+it did not install the requested Tk formula. Homebrew automatically cleaned
+old download caches. The replacement runtime was installed separately with
+uv; no Homebrew system dependency upgrades were performed.
+
+## Python 3.14 runtime: 15 November 2026
+
+The full suite passed under an isolated uv-managed Python 3.14.6 runtime
+with Tk 9.0.3: 114 tests, including the native macOS GUI tests. Package versions
+were kept the same as in the Python 3.11 comparison. The normal project
+virtual environment was then recreated with this runtime, and .python-version
+was updated to 3.14.6. No Homebrew system package upgrades were required.
+The preceding Python 3.11.15 project environment was preserved at
+/private/tmp/bookbinding-venv-before-python314. No commits were created.
+The previously reported extra combobox click has not been confirmed resolved.

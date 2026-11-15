@@ -49,13 +49,14 @@ The initial setup needs an internet connection to download dependencies.
 To set up and run the application from a terminal instead:
 
 ```sh
-python3 -m tkinter
-uv sync --locked --no-dev --no-python-downloads --python "$(command -v python3)"
+uv sync --locked --no-dev
+.venv/bin/python -m tkinter
 .venv/bin/python -m bookbinding
 ```
 
-The first command should open a small test window. If it fails, use a Python
-installation with Tkinter before creating the project environment.
+The project selects Python 3.14.6, whose uv distribution includes Tk 9.0.3.
+The second command should open a small test window. The launcher no longer
+falls back to a machine-specific Python installation.
 
 ### Linux
 
