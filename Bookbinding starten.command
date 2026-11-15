@@ -2,6 +2,9 @@
 set -e
 cd -- "$(dirname -- "$0")"
 
+# Launch this checkout even when editable-install path hooks are unavailable.
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
+
 # A configured environment also fixes which Tk-enabled Python is used.
 if [[ -x .venv/bin/python ]]; then
     exec .venv/bin/python -m bookbinding
