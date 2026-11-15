@@ -84,11 +84,24 @@ class BookbindingApp:
         root.rowconfigure(0, weight=1)
         outer.columnconfigure(0, weight=1)
 
+        header = ttk.Frame(outer)
+        header.grid(row=0, column=0, sticky="ew", pady=(0, 12))
+        header.columnconfigure(0, weight=1)
         ttk.Label(
-            outer,
+            header,
             textvariable=self._text("PDF für die Buchbindung vorbereiten"),
             font=("TkDefaultFont", 18, "bold"),
-        ).grid(row=0, column=0, sticky="w", pady=(0, 12))
+            wraplength=560,
+        ).grid(row=0, column=0, sticky="sw")
+        self.language_button = ttk.Button(header, command=self.toggle_language)
+        self.language_button.grid(row=1, column=0, sticky="nw", pady=(10, 0))
+        image_path = Path(__file__).parent / "assets" / "bookbinding-header.png"
+        self._header_image = tk.PhotoImage(
+            master=root, data=image_path.read_bytes(), format="png"
+        )
+        ttk.Label(header, image=self._header_image).grid(
+            row=0, column=1, rowspan=2, sticky="e", padx=(16, 0)
+        )
         source_frame = self._frame(outer, "Quelldatei")
         source_frame.grid(row=1, column=0, sticky="ew", pady=(0, 10))
         source_frame.columnconfigure(0, weight=1)
@@ -230,8 +243,6 @@ class BookbindingApp:
             wraplength=700,
         ).grid(row=6, column=0, sticky="w", pady=(8, 0))
 
-        self.language_button = ttk.Button(outer, command=self.toggle_language)
-        self.language_button.grid(row=7, column=0, sticky="e", pady=(8, 0))
         self._apply_language()
         for variable in (self.mode, self.sheets, self.custom, self.flyleaf, self.book_format):
             variable.trace_add("write", self._refresh_preview)
