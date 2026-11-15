@@ -1,136 +1,171 @@
 # Bookbinding
 
-Arrange PDF pages into folded signatures for sewn bookbinding.
-A Python 3 desktop application with English and German interfaces.
+Prepare PDFs for printing, folding and sewing into a book. Bookbinding arranges
+pages into **signatures**: groups of folded sheets that you sew together along
+the spine. It exports print-ready PDFs for automatic or manual duplex printing.
 
-## Interface language
+For example, an eight-page PDF becomes four printed sides on two sheets.
+Nest the sheets and fold them together to read pages 1 through 8 in order.
+The source PDF is left unchanged.
 
-The interface starts in English. Click **Deutsch** to switch to German or
-**English** to switch back. Your settings, loaded PDF and any running export
-are preserved. The language choice applies to the current window.
+## What you can do
 
-Translations are stored in `src/bookbinding/i18n.py`. German messages serve
-as catalog keys, with English translations alongside them. Selected options
-use language-independent IDs. Errors carry their values separately; the
-interface translates and formats them for display. Every new message needs
-a catalog entry. Missing translations raise an error rather than silently
-falling back to another language.
+- Choose the maximum number of sheets per signature, or enter a sequence such
+  as `4, 4, 3` for signatures containing 16, 16 and 12 book pages.
+- Make a single booklet or arrange sheets for perfect binding.
+- Set the paper size, book page size and scaling.
+- Add blank pages at the front and back; remaining sheet space is filled
+  with blanks automatically.
+- Export alternating fronts and backs for a duplex printer, or separate
+  front-side and back-side files for manual printing.
 
-The language switch applies to the interface. Output filenames and the JSON
-print-plan format stay the same; generated printing instructions remain in
-German. Messages from third-party libraries are displayed as provided.
+Text and vector graphics remain PDF content rather than being converted to
+images. The interface is available in English and German.
 
-## Running the application
+## Get started
 
-The application is developed and tested on macOS. A Linux launcher is also
-included, but a full Linux desktop test has not yet been performed.
-Windows is not supported.
+The application is developed and tested on **macOS**. A Linux launcher is
+included; full Linux desktop testing is still pending. Windows is not supported.
+
+You need:
+
+- Python **3.11 or later**, with Tkinter.
+- [uv](https://docs.astral.sh/uv/) to install the project dependencies.
+- A graphical desktop session.
+
+Download and extract this repository, or clone it:
+
+```sh
+git clone https://github.com/eduard-keilmann/Bookbinding.git
+cd Bookbinding
+```
 
 ### macOS
 
-Double-click `Bookbinding starten.command`. The launcher uses the existing
-project environment or creates one with uv if needed.
-You need Python 3.11 or later with Tkinter and [uv](https://docs.astral.sh/uv/).
+Double-click **`Bookbinding starten.command`** in the project folder. It creates
+the project environment on first launch if one has not been configured.
+The initial setup needs an internet connection to download dependencies.
 
-You can also run these commands from the project directory:
+To set up and run the application from a terminal instead:
 
 ```sh
-uv sync --locked --no-dev
-uv run --locked --no-dev python -m bookbinding
+python3 -m tkinter
+uv sync --locked --no-dev --no-python-downloads --python "$(command -v python3)"
+.venv/bin/python -m bookbinding
 ```
 
-Tkinter must be available in the Python installation used by the project.
-The tested macOS setup uses Python 3.11 with Tkinter; the local Homebrew
-Python 3.12 installation does not include `_tkinter`. The macOS launcher
-therefore prefers the configured project environment.
+The first command should open a small test window. If it fails, use a Python
+installation with Tkinter before creating the project environment.
 
 ### Linux
 
-You need Python 3.11 or later with Tkinter, uv and a graphical desktop session.
-Install Tkinter through your distribution's package manager if needed.
-Run `python3 -m tkinter` to check that it can open a window
-([Python documentation](https://docs.python.org/3/library/tkinter.html)).
-
-From the project directory, run:
+Install Python with Tkinter through your distribution's package manager,
+then run the launcher from the project folder:
 
 ```sh
 ./bookbinding-linux.sh
 ```
 
-The launcher uses an existing `.venv`. Otherwise, uv creates the environment
-with the detected system Python. Automatic Python downloads are disabled so
-that the interpreter with Tkinter is used
-([uv documentation](https://docs.astral.sh/uv/concepts/python-versions/)).
-The initial setup needs network access to download the project dependencies.
-Create the environment on Linux; do not copy a macOS `.venv` across.
+It checks Python and Tkinter, then uses or creates the project environment.
+Create a separate environment on each system; do not copy a macOS `.venv`
+to Linux. Opening the output folder requires `xdg-open` or `gio`.
 
-**Open output folder** uses `xdg-open`, or `gio open` if `xdg-open` is unavailable.
-If neither program is installed, a message shows the output path.
-These code paths have automated tests, but have not been tested on a Linux desktop.
+## Prepare your first PDF
 
-## Sheets, signatures and settings
+1. Click **Open PDF** and select your document.
+2. Choose a binding method. For a sewn book, start with **Signatures with
+   a sheet limit** and set the maximum sheets per signature.
+3. Select your paper size and book page size. Review the signature and
+   blank-page counts in the preview.
+4. Choose a **new output folder**, then click **Create print PDFs**.
+5. When the export finishes, click **Open output folder**.
 
-A **sheet** is one physical piece of paper, printed on both sides and folded
-once. It carries **four book pages**. Several sheets nested inside one another
-form a **signature**. A four-sheet signature therefore contains 16 book pages.
+One sheet of paper, printed on both sides and folded once, holds **four book
+pages**. Four sheets per signature therefore means 16 book pages per signature.
+The last signature may be smaller than the selected limit.
 
-| Binding method | Behaviour |
+The available binding methods are:
+
+| Method | Use it for |
 | --- | --- |
-| Signatures with a sheet limit | Choose the maximum sheets per signature. The last signature may be smaller. |
-| Custom signatures | For example, `4, 4, 3` gives signatures of 16, 16 and 12 book pages. Extra capacity is filled with blanks. Insufficient capacity is rejected. |
-| Automatic signatures | Uses a lookup table up to 192 pages, then distributes sheets with a target of eight sheets per signature. Short documents may form one large signature. |
-| Single booklet | The entire document forms one signature. |
-| Perfect binding | Each sheet carries four consecutive book pages, arranged as 4–1 on the front and 2–3 on the back. |
+| Signatures with a sheet limit | A sewn book with a chosen maximum number of sheets per signature. |
+| Custom signatures | A specific sequence of sheet counts, such as `4, 4, 3`. Extra capacity becomes blank pages; insufficient capacity is rejected. |
+| Automatic signatures | Suggested groups based on document length. Up to 192 pages, sizes come from a table; longer documents use an eight-sheet target. |
+| Single booklet | One signature containing the whole document. |
+| Perfect binding | Individual folded sheets arranged as 4–1 on the front and 2–3 on the back. |
 
-You can add two blank pages at the front and two at the back. Further blank
-pages are added at the end if needed to reach a multiple of four. The preview
-shows the number of signatures, sheets and added blank pages before export.
+**Use half the sheet** fills the available half-sheet area while keeping page
+proportions by default. For A4 paper, the folded page area is 148.5 × 210 mm.
+Book pages are rotated by 90° within the portrait output PDF.
 
-Two book pages are placed on each PDF output page. The output sheet is in
-portrait orientation, with the book pages rotated by 90 degrees. When viewed
-with the text upright, the outer sheet of an eight-page booklet has page 8
-on the left and page 1 on the right, with pages 2 and 7 on the back.
+The interface starts in English. Use **Deutsch** or **English** to switch
+languages without losing your settings. The choice applies to the current
+window. Output filenames stay the same in both languages, and the generated
+printing instructions are currently in German.
 
-You can choose the paper size, book page size, proportional scaling or
-stretch-to-fit, and whether to rotate the backs. Dimensions are in millimetres.
-**Use half the sheet** uses the full area of a folded half-sheet.
-The application accounts for PDF crop boxes, offset page boxes and existing
-page rotation. Text and vector graphics remain PDF content rather than
-being rasterized.
+## Print and fold
 
-## Output and printing
+**Print a small test booklet before printing a whole book.** A sample is included:
 
-The source PDF is not modified. Choose a **new output folder**; existing
-folders are not overwritten. The default is `<PDF-name>-files`. If that name
-is already taken, the interface suggests an unused name with a numeric suffix.
+- [Eight-page source PDF](examples/probeheft.pdf)
+- [Print-ready PDF for two A4 sheets](examples/probeheft-druck/lage-001-duplex.pdf)
 
-- Duplex output: `lage-001-duplex.pdf`, with alternating fronts and backs.
-- Manual duplex: `lage-001-vorderseiten.pdf` and `lage-001-rueckseiten.pdf`.
-  Both files follow the sheet order from the outside to the inside.
-- Single booklet and perfect binding produce one combined file, or a pair
-  of files for manual duplex printing.
-- `druckplan.json` records source page numbers, blanks and export settings.
-- `Druckhinweise.txt` contains printing instructions for the selected mode.
+Use these print settings for the sample and for default A4 output:
 
-In the print dialog, select **one PDF page per sheet side** and
-**100% / actual size**. The pages are already arranged for folding, so do not
-apply another booklet or two-pages-per-sheet setting.
+- **A4, portrait, actual size / 100%.** Match the paper size to your export
+  when using another format.
+- **One PDF page per sheet side.** Leave booklet printing and additional
+  two-pages-per-sheet settings off.
+- With **Rotate backs by 180°** enabled, use **flip on the long edge**.
+  With it disabled, use **flip on the short edge**. Keep the output orientation
+  unchanged; check the result on your printer.
 
-For portrait output without automatic orientation changes, **flip on the
-long edge** normally matches the enabled back-rotation option; **flip on the
-short edge** matches disabled back rotation. Printer drivers and manual paper
-feeding can differ. Print and fold a numbered two-sheet booklet first to
-check orientation and reading order. For manual duplex, the required order
-of the backs depends on the paper path. Use reverse order in the print dialog
-for the back-side file if needed.
+For manual duplex printing, print the front-side file, reinsert the same
+stack and print the back-side file. Both files list sheets from the outside
+to the inside. Your printer's paper path determines whether you need to
+print the backs in reverse order.
 
-A synthetic eight-page test booklet is included:
-[`examples/probeheft.pdf`](examples/probeheft.pdf) is the source, and
-[`examples/probeheft-druck/lage-001-duplex.pdf`](examples/probeheft-druck/lage-001-duplex.pdf)
-is the imposed version for two A4 sheets with back rotation enabled.
-Use it to check your print settings before printing a whole book.
+Nest the sheets of each signature, fold them together, then gather the
+signatures in order for sewing. For an eight-page signature, the two sheets
+have these page pairs when viewed with the text upright:
+
+| Sheet | Front | Back |
+| --- | --- | --- |
+| Outer | 8 · 1 | 2 · 7 |
+| Inner | 6 · 3 | 4 · 5 |
+
+## Output files
+
+Each signature gets its own print PDF, or a pair of files for manual duplex.
+Single booklet and perfect binding produce combined output instead.
+
+| File | Contents |
+| --- | --- |
+| `lage-001-duplex.pdf` | Alternating fronts and backs for signature 1. |
+| `lage-001-vorderseiten.pdf` | Fronts only, for manual duplex. |
+| `lage-001-rueckseiten.pdf` | Backs only, for manual duplex. |
+| `druckplan.json` | Source page numbers, blank-page positions and export settings. |
+| `Druckhinweise.txt` | Printing instructions for the selected settings, in German. |
+
+The default output folder is `<PDF-name>-files`. Existing folders are not
+overwritten; the interface suggests another name if the default is taken.
+Page numbers in the print plan refer to the source PDF starting at 1, not to
+printed page numbers. `null` in the JSON plan means a blank book page.
+
+## Limitations
+
+- Layouts assume left-bound books read from left to right, with one fold per sheet.
+- Paper thickness and creep are not compensated for. Check your printer's
+  printable margins and duplex alignment with a test print.
+- The output is intended for static page content. Interactive forms,
+  annotations, links, bookmarks and digital signatures are not preserved.
+  Export completed forms as a static PDF first.
+- Password-protected PDFs require their password. The exported print copies
+  are unencrypted; the password is not saved in the print plan.
 
 ## Python usage
+
+You can also use the page planner and PDF exporter from Python:
 
 ```python
 from bookbinding import make_plan
@@ -141,28 +176,14 @@ print([signature.sheet_count for signature in plan.signatures])  # [4, 4, 1]
 
 result = impose_pdf(
     "book.pdf",
-    "book-print",  # Must not already exist.
-    signature_sizes=[4, 4, 3],
+    "book-print",  # A new directory.
+    sheets_per_signature=4,
     paper_size="A4",
-    duplex=True,
-    rotate_backs=True,
 )
 print(result.files)
 ```
 
-`None` in a page plan represents a blank book page. Source pages are numbered
-from 1, regardless of printed page numbers or PDF page labels.
-Password-protected PDFs can be opened with their password. Output files are
-unencrypted print copies; passwords are not recorded in the print plan.
-Interactive forms, comments, links, bookmarks and digital signatures are not
-preserved. The output contains static page content for printing. Export form
-values to a static PDF before using the application.
-
-The PDF implementation follows the official pypdf documentation on
-[transformations](https://pypdf.readthedocs.io/en/stable/user/cropping-and-transforming.html)
-and [encryption](https://pypdf.readthedocs.io/en/stable/user/encryption-decryption.html).
-
-## Development and checks
+## Development
 
 ```sh
 uv sync --locked --group dev
@@ -171,19 +192,14 @@ uv run --locked ruff check .
 uv run --locked ruff format --check .
 ```
 
-To enable tests with real Tk widgets in a desktop session:
+GUI tests require a desktop session and must be enabled explicitly:
 
 ```sh
 BOOKBINDING_GUI_TESTS=1 uv run --locked pytest tests/test_gui.py
 ```
 
-Tests cover worked page-ordering examples, reading order after folding,
-page completeness, signature capacity, blank pages and invalid inputs.
-PDF integration tests use synthetic numbered pages to check export, placement,
-rotation, cropping, encryption and file protection. PyMuPDF is used only for
-development and independent rendering checks. Printer paper handling must
-be checked on the actual device.
-See [docs/verification.md](docs/verification.md) for recorded results and limitations.
-
-The layout assumes left-bound books read from left to right, with four book
-pages per folded sheet. Paper thickness and creep are not compensated for.
+Translations live in `src/bookbinding/i18n.py`; selected options use
+language-independent IDs. PDF processing uses pypdf. PyMuPDF is used only
+for testing and independent rendering checks.
+See [verification results](docs/verification.md) for the checks performed
+and what remains untested.
