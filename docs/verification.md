@@ -1,85 +1,90 @@
-# Verifikation
+# Verification
 
-Stand: 14. November 2026. Alle Testdokumente sind synthetisch; es wurden
-keine persönlichen Buch-PDFs umgeschrieben oder als Testfixtures übernommen.
+This document records completed checks and their limits. Translating this
+record does not constitute a new test run.
 
-## Geprüfte Umgebung
+## Environment
 
-- macOS, Python 3.11.0, Tk 8.6.12
-- pypdf 7.1.0, cryptography 50.0.2
-- PyMuPDF 1.28.2 als unabhängiger PDF-Renderer
-- pytest 9.2.0, Ruff 0.17.5
-- Isolierte uv-Projektumgebung, keine Änderung der vorhandenen Python-Umgebung
+The checks below used:
 
-## Tatsächlich ausgeführte Prüfungen
+- macOS, Python 3.11.0 and Tk 8.6.12
+- pypdf 7.1.0 and cryptography 50.0.2
+- PyMuPDF 1.28.2 as an independent PDF renderer
+- pytest 9.2.0 and Ruff 0.17.5
+- An isolated uv project environment; the existing Python environment was not modified
+
+## Checks on 14 November 2026
+
+All automated test documents were synthetic. Personal book PDFs were not
+modified or included as test fixtures.
 
 `BOOKBINDING_GUI_TESTS=1 .venv/bin/pytest --tb=short`:
-**103 bestanden**, davon 65 Prüfungen der Seitenplanung, 30 PDF-Integrationstests,
-zwei Tests mit echten Tk-Widgets und einem Export im Hintergrundthread sowie
-sechs Prüfungen der Plattformintegration und des Linux-Starters.
-Tk benötigt Zugriff auf die macOS-Desktop-Sitzung; die GUI-Tests wurden deshalb
-außerhalb der Ausführungssandbox ausgeführt.
+**103 passed**. These comprised 65 page-planning tests, 30 PDF integration
+tests, two tests with real Tk widgets and a background export, and six tests
+of desktop integration and the Linux launcher.
+The GUI tests ran outside the execution sandbox because Tk requires access
+to the macOS desktop session.
 
-`ruff check .` und `ruff format --check .`: bestanden.
+`ruff check .` and `ruff format --check .`: passed.
 
-Die PDF-Tests prüfen unter anderem:
+The tests cover:
 
-- explizites Acht-Seiten-Heft: 8–1 / 2–7 / 6–3 / 4–5;
-- Wiederherstellung der fortlaufenden Lesereihenfolge durch simuliertes Falten;
-- genau einmaliges Auftreten jeder Quellseite, einschließlich kurzer letzter Lagen;
-- eigene Lagenfolgen, Vorsatzseiten, Auffüllung, vollständig leere Bogenseiten;
-- identische Renderbilder der entsprechenden Duplex- und manuellen Teildateien;
-- Seitendrehungen von 0°, 90°, 180° und 270° mit versetzten CropBox-/MediaBox-Koordinaten;
-- Rendervergleich des sichtbaren Originalausschnitts mit dem ausgeschossenen Ausschnitt;
-- Skalierung mit und ohne Erhalt des Seitenverhältnisses;
-- AES-verschlüsselte Eingaben, falsche Passwörter und unverschlüsselte Druckausgaben;
-- Schutz vorhandener Dateien und vollständiges Aufräumen nach einem späteren Exportfehler.
+- The eight-page booklet arrangement: 8–1 / 2–7 / 6–3 / 4–5.
+- Recovery of consecutive reading order through simulated folding.
+- Every source page appearing exactly once, including a shorter final signature.
+- Custom signatures, added blanks, padding and completely blank sheet sides.
+- Identical rendered images for corresponding duplex and manual output pages.
+- Page rotations of 0°, 90°, 180° and 270°, with offset crop and media boxes.
+- Render comparisons between the visible source area and its imposed counterpart.
+- Scaling with and without preserved proportions.
+- AES-encrypted input, incorrect passwords and unencrypted print output.
+- Protection of existing files and cleanup after an error in a later signature.
 
-Die ursprünglich auftretende pypdf-7-Inkompatibilität ist korrigiert:
-Transformationen erfolgen auf Seiten eines separaten Writers. Die PDF-Tests
-scheiterten vor dieser Korrektur an `DeprecationError` und bestanden danach.
-Die Testassertionen wurden dafür nicht abgeschwächt.
+An initial pypdf 7 incompatibility was corrected by applying transformations
+to pages owned by a separate writer. The PDF tests failed with
+`DeprecationError` before the correction and passed afterwards.
+The assertions were not weakened to obtain a pass.
 
-Die vier Seiten der mitgelieferten Druckdatei des Probehefts wurden als PNG
-gerendert und visuell geprüft: Buchseitennummern, Rahmen, Orientierung und
-Abstände sind vorhanden und ohne Abschneiden. Die Fenstermaße und Positionen
-der Hauptbedienelemente wurden in einer echten Tk-Sitzung auf Überlauf geprüft.
+All four pages of the included test booklet's print PDF were rendered to PNG
+and inspected visually. Page numbers, borders, orientation and spacing were
+present without clipping. The main controls were also checked for overflow
+in a real Tk session.
 
-## Grenzen
+## Language switch: 15 November 2026
 
-- Plattformpriorität: macOS zuerst, Linux danach; Windows wird nicht unterstützt.
-  Der macOS-Starter blieb bei der Linux-Ergänzung unverändert. Linux-Ordneröffner
-  wurden mit simulierten Programmverfügbarkeiten geprüft; der POSIX-Starter mit
-  einem Testinterpreter aus einem anderen Verzeichnis und einem Projektpfad mit
-  Leerzeichen. Kein vollständiger Test auf einem echten Linux-Desktop.
+The interface starts in English and switches between English and German.
+The full suite ran with real macOS Tk widgets: **107 tests passed**.
+After a final wording correction, the six GUI and translation tests were
+run again and passed. They cover preserved inputs and selections, translated
+validation messages, and language changes during and after an export.
+The main test for the new feature was first run against the previous code
+and failed because that version started in German.
 
-- Kein physischer Probeausdruck: Papierweg, Duplex-Treiber und Wiedereinlegen
-  müssen am tatsächlichen Drucker geprüft werden.
-- Kein visueller Screenshot-Test der gesamten Tk-Oberfläche. Widgetzustände,
-  Layoutgrenzen und ein echter GUI-Export wurden automatisiert geprüft.
-- Tests decken keine beliebigen defekten PDFs, Druckertreiber oder sehr großen
-  Bildbände ab. Interaktive Formulare und Annotationen gehören nicht zum
-  unterstützten Druck-Inhaltsmodell.
-- PyMuPDF meldet fünf DeprecationWarnings aus seinen SWIG-Bindings. Die Tests
-  bestehen; die Hinweise wurden nicht ausgefiltert.
+Ruff and formatting checks passed. The new `i18n.py` and `errors.py` modules
+passed mypy checks. A full type check of the existing application was not
+performed. No dependencies were added.
 
-Annahmen: links gebundene Bücher; Leserichtung links nach rechts; vier
-Buchseiten pro einmal gefaltetem Bogen; keine Papierdickenkompensation.
+Code standards and requirements were reviewed separately. Findings about
+option mappings, type annotations and count wording were addressed.
+The main controls were checked for overflow in both languages in a real
+Tk session. No screenshot test of the interface was performed.
 
-## Sprachwechsel (15. November 2026)
+## Limitations
 
-Englisch ist die Startsprache; der Button wechselt zwischen Englisch und Deutsch.
-Die gesamte Suite wurde mit echten macOS-Tk-Widgets ausgeführt: 107 Tests bestanden.
-Nach einer letzten Textkorrektur wurden die sechs GUI- und Übersetzungstests erneut
-geprüft: bestanden. Geprüft sind erhaltene Eingaben und Auswahlwerte, übersetzte
-Fehlermeldungen sowie der Wechsel während und nach einem Export. Der Haupttest
-für die neue Funktion wurde zuerst gegen den vorherigen Stand ausgeführt und
-scheiterte an dessen deutscher Startsprache.
+- The application was tested on macOS. Linux folder-opening commands were
+  tested with simulated program availability. The POSIX launcher was tested
+  with a test interpreter, a different working directory and a project path
+  containing spaces. A full Linux desktop test has not been performed.
+  Windows is not supported.
+- No physical test print was performed as part of these checks. Paper paths,
+  duplex settings and manual refeeding must be checked on the actual printer.
+- Widget states, layout bounds and a real GUI export were tested automatically;
+  the complete Tk interface has no visual screenshot test.
+- The tests do not cover every malformed PDF, printer driver or large
+  image-heavy document. Interactive forms and annotations are outside the
+  supported print-content model.
+- PyMuPDF emitted five deprecation warnings from its SWIG bindings. The tests
+  passed, and the warnings were not filtered out.
 
-Ruff und Formatprüfung bestanden. Die neuen Module `i18n.py` und `errors.py`
-bestanden die mypy-Typprüfung; eine vollständige Typprüfung der bestehenden
-Anwendung wurde nicht durchgeführt. Es wurden keine Abhängigkeiten ergänzt.
-Standards- und Anforderungsreview wurden getrennt durchgeführt. Die Hinweise
-zu Auswahlzuordnung, Typangaben und Zählertexten wurden umgesetzt.
-Die Größen der Hauptbedienelemente werden zusätzlich in beiden Sprachen in
-einer echten Tk-Sitzung geprüft; ein Screenshot-Test erfolgte nicht.
+The layout assumes left-bound books read from left to right, with four book
+pages per folded sheet. Paper thickness is not compensated for.
