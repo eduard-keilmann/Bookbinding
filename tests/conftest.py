@@ -51,8 +51,8 @@ def pdf_factory(tmp_path):
         if media_offset:
             writer = PdfWriter()
             with PdfReader(path) as reader:
-                for original in reader.pages:
-                    page = writer.add_page(original)
+                for source_page in reader.pages:
+                    page = writer.add_page(source_page)
                     old_crop = list(page.cropbox)
                     old_media = list(page.mediabox)
                     page.add_transformation(Transformation().translate(40, 60))

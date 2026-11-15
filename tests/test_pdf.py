@@ -17,7 +17,7 @@ def test_duplex_places_the_eight_book_pages_in_the_correct_halves(
     pdf_factory, tmp_path, rotate_backs
 ):
     source = pdf_factory(8)
-    original_hash = hashlib.sha256(source.read_bytes()).digest()
+    source_hash = hashlib.sha256(source.read_bytes()).digest()
     result = impose_pdf(source, tmp_path / "out", sheets_per_signature=2, rotate_backs=rotate_backs)
     assert len(result.files) == 1
     with pymupdf.open(result.files[0]) as document:
@@ -42,7 +42,7 @@ def test_duplex_places_the_eight_book_pages_in_the_correct_halves(
                         assert line["dir"] == pytest.approx(expected_direction, abs=1e-6)
             assert page.rect.width / POINTS_PER_MM == pytest.approx(210, abs=1e-3)
             assert page.rect.height / POINTS_PER_MM == pytest.approx(297, abs=1e-3)
-    assert hashlib.sha256(source.read_bytes()).digest() == original_hash
+    assert hashlib.sha256(source.read_bytes()).digest() == source_hash
     manifest = json.loads((result.output_directory / "druckplan.json").read_text())
     assert manifest["jobs"][0]["sides"] == [
         {"left": 8, "right": 1, "back": False},
@@ -78,9 +78,9 @@ def test_rotated_offset_cropbox_renders_like_the_visible_source(
     pdf_factory, tmp_path, rotation, media_offset
 ):
     source = pdf_factory(4, rotation=rotation, cropped=True, media_offset=media_offset)
-    with pymupdf.open(source) as original:
-        width, height = original[3].rect.width, original[3].rect.height
-        expected = original[3].get_pixmap()
+    with pymupdf.open(source) as source_document:
+        width, height = source_document[3].rect.width, source_document[3].rect.height
+        expected = source_document[3].get_pixmap()
     info = inspect_pdf(source)
     assert info.width_mm == pytest.approx(width / POINTS_PER_MM, abs=1e-5)
     assert info.height_mm == pytest.approx(height / POINTS_PER_MM, abs=1e-5)
