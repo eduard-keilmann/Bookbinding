@@ -65,3 +65,21 @@ der Hauptbedienelemente wurden in einer echten Tk-Sitzung auf Überlauf geprüft
 
 Annahmen: links gebundene Bücher; Leserichtung links nach rechts; vier
 Buchseiten pro einmal gefaltetem Bogen; keine Papierdickenkompensation.
+
+## Sprachwechsel (15. November 2026)
+
+Englisch ist die Startsprache; der Button wechselt zwischen Englisch und Deutsch.
+Die gesamte Suite wurde mit echten macOS-Tk-Widgets ausgeführt: 107 Tests bestanden.
+Nach einer letzten Textkorrektur wurden die sechs GUI- und Übersetzungstests erneut
+geprüft: bestanden. Geprüft sind erhaltene Eingaben und Auswahlwerte, übersetzte
+Fehlermeldungen sowie der Wechsel während und nach einem Export. Der Haupttest
+für die neue Funktion wurde zuerst gegen den vorherigen Stand ausgeführt und
+scheiterte an dessen deutscher Startsprache.
+
+Ruff und Formatprüfung bestanden. Die neuen Module `i18n.py` und `errors.py`
+bestanden die mypy-Typprüfung; eine vollständige Typprüfung der bestehenden
+Anwendung wurde nicht durchgeführt. Es wurden keine Abhängigkeiten ergänzt.
+Standards- und Anforderungsreview wurden getrennt durchgeführt. Die Hinweise
+zu Auswahlzuordnung, Typangaben und Zählertexten wurden umgesetzt.
+Die Größen der Hauptbedienelemente werden zusätzlich in beiden Sprachen in
+einer echten Tk-Sitzung geprüft; ein Screenshot-Test erfolgte nicht.

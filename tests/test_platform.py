@@ -8,6 +8,7 @@ from unittest.mock import Mock
 import pytest
 
 from bookbinding import gui
+from bookbinding.i18n import Translator
 
 
 @pytest.mark.parametrize(
@@ -20,6 +21,8 @@ from bookbinding import gui
 )
 def test_output_folder_uses_the_platform_desktop_opener(monkeypatch, platform, available, expected):
     app = gui.BookbindingApp.__new__(gui.BookbindingApp)
+    app.translator = Translator()
+    app.tr = app.translator.text
     app.last_output = Path("/tmp/Buch mit Leerzeichen")
     monkeypatch.setattr(gui.sys, "platform", platform)
     monkeypatch.setattr(gui.shutil, "which", lambda name: name if name in available else None)
@@ -32,6 +35,8 @@ def test_output_folder_uses_the_platform_desktop_opener(monkeypatch, platform, a
 @pytest.mark.parametrize("missing", [False, True])
 def test_folder_opener_failures_are_shown_without_crashing(monkeypatch, missing):
     app = gui.BookbindingApp.__new__(gui.BookbindingApp)
+    app.translator = Translator()
+    app.tr = app.translator.text
     app.last_output = Path("/tmp/output")
     app.root = object()
     monkeypatch.setattr(gui.sys, "platform", "linux")

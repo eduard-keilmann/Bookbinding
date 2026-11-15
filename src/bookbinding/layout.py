@@ -8,6 +8,8 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Literal
 
+from .errors import InputError
+
 BindingMode = Literal["signatures", "automatic", "booklet", "perfect-bound"]
 
 AUTOMATIC_SIGNATURES = (
@@ -126,15 +128,15 @@ def make_plan(
     eight sheets per signature for longer documents.
     """
     if type(page_count) is not int or page_count < 1:
-        raise ValueError("Die PDF muss mindestens eine Seite enthalten.")
+        raise InputError("Die PDF muss mindestens eine Seite enthalten.")
     if type(sheets_per_signature) is not int or sheets_per_signature < 1:
-        raise ValueError("Bögen je Lage muss eine positive ganze Zahl sein.")
+        raise InputError("Bögen je Lage muss eine positive ganze Zahl sein.")
     if mode not in ("signatures", "automatic", "booklet", "perfect-bound"):
-        raise ValueError(f"Unbekanntes Bindeverfahren: {mode}")
+        raise InputError("Unbekanntes Bindeverfahren: {method}", method=mode)
     if signature_sizes is not None and mode != "signatures":
-        raise ValueError("Eigene Lagenfolgen sind nur im Lagenmodus möglich.")
+        raise InputError("Eigene Lagenfolgen sind nur im Lagenmodus möglich.")
     if mode == "automatic" and sheets_per_signature != 8:
-        raise ValueError("Die Automatik verwendet eine Vorgabe von acht Bögen.")
+        raise InputError("Die Automatik verwendet eine Vorgabe von acht Bögen.")
 
     pages: list[int | None] = list(range(1, page_count + 1))
     if flyleaf:
@@ -145,11 +147,16 @@ def make_plan(
     if signature_sizes is not None:
         sizes = tuple(signature_sizes)
         if not sizes or any(type(size) is not int or size < 1 for size in sizes):
-            raise ValueError("Jede Lage muss eine positive ganze Bogenzahl haben.")
+            raise InputError("Jede Lage muss eine positive ganze Bogenzahl haben.")
         if sum(sizes) < sheet_count:
-            raise ValueError(
-                f"Lagenfolge zu klein: {sum(sizes) * 4} Plätze für {len(pages)} Buchseiten "
-                "einschließlich Vorsatz und Auffüllseiten. Es werden keine Seiten abgeschnitten."
+            raise InputError(
+                (
+                    "Lagenfolge zu klein: {capacity} Plätze für {pages} "
+                    "Buchseiten einschließlich Vorsatz und Auffüllseiten. Es "
+                    "werden keine Seiten abgeschnitten."
+                ),
+                capacity=sum(sizes) * 4,
+                pages=len(pages),
             )
         pages.extend([None] * (sum(sizes) * 4 - len(pages)))
     elif mode == "booklet":

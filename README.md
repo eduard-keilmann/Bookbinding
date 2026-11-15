@@ -1,7 +1,23 @@
 # Bookbinding
 
 PDF-Seiten für gefaltete Lagen und Fadenheftung ausschießen.
-Python-3-Anwendung mit deutscher Desktop-Oberfläche.
+Python-3-Anwendung mit englischer und deutscher Desktop-Oberfläche.
+
+## Sprache
+
+Die Oberfläche startet auf Englisch. Mit **Deutsch** auf Deutsch umschalten;
+mit **English** zurück auf Englisch. Eingaben, geladene PDF und laufender Export
+bleiben erhalten. Die Sprachwahl gilt für das aktuelle Fenster.
+
+Die Übersetzungen stehen zentral in `src/bookbinding/i18n.py`. Deutsche
+Nachrichtentexte dienen als Schlüssel, englische Texte als Übersetzungen.
+Auswahlwerte sind sprachunabhängige IDs. Fehlermeldungen enthalten ihre Werte
+separat; erst die Oberfläche übersetzt und formatiert sie. Neue Nachrichten
+müssen im Katalog stehen; fehlende Übersetzungen werden nicht still übergangen.
+
+Der Sprachwechsel betrifft die Oberfläche. Dateinamen, Druckplan und die
+beiliegenden Druckhinweise behalten ihr bisheriges Format beziehungsweise Deutsch.
+Technische Meldungen fremder Bibliotheken werden unverändert angezeigt.
 
 ## Starten
 

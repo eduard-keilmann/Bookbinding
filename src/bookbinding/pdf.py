@@ -12,6 +12,7 @@ from pypdf import PageObject, PdfReader, PdfWriter, Transformation
 from pypdf.errors import FileNotDecryptedError
 from pypdf.generic import RectangleObject
 
+from .errors import InputError, OutputExistsError
 from .layout import BindingMode, ImpositionPlan, SheetSide, make_plan
 
 POINTS_PER_MM = 72 / 25.4
@@ -102,7 +103,7 @@ def _open_pdf(source: Path, password: str | None) -> Iterator[PdfReader]:
         if reader.is_encrypted and not reader.decrypt(password if password is not None else ""):
             raise FileNotDecryptedError("Die PDF benötigt ein gültiges Passwort.")
         if not reader.pages:
-            raise ValueError("Die PDF enthält keine Seiten.")
+            raise InputError("Die PDF enthält keine Seiten.")
         yield reader
 
 
@@ -111,7 +112,7 @@ def _visible_box(page: PageObject) -> RectangleObject:
     media, crop = page.mediabox, page.cropbox
     coordinates = [float(value) for value in (*media, *crop)]
     if not all(math.isfinite(value) for value in coordinates):
-        raise ValueError("PDF-Seitenboxen müssen endliche Koordinaten haben.")
+        raise InputError("PDF-Seitenboxen müssen endliche Koordinaten haben.")
     box = RectangleObject(
         (
             max(media.left, crop.left),
@@ -121,9 +122,9 @@ def _visible_box(page: PageObject) -> RectangleObject:
         )
     )
     if box.width <= 0 or box.height <= 0:
-        raise ValueError("Die PDF enthält eine leere oder ungültige Seitenbox.")
+        raise InputError("Die PDF enthält eine leere oder ungültige Seitenbox.")
     if page.rotation % 360 not in (0, 90, 180, 270):
-        raise ValueError("Die PDF-Seitendrehung muss ein Vielfaches von 90 Grad sein.")
+        raise InputError("Die PDF-Seitendrehung muss ein Vielfaches von 90 Grad sein.")
     return box
 
 
@@ -239,19 +240,19 @@ def impose_pdf(
         else source.with_name(f"{source.stem}-files")
     )
     if destination.exists() or destination.is_symlink():
-        raise FileExistsError(f"Zielordner existiert bereits: {destination}")
+        raise OutputExistsError("Zielordner existiert bereits: {path}", path=destination)
     if paper_size not in PAPER_SIZES:
-        raise ValueError(f"Unbekanntes Papierformat: {paper_size}")
+        raise InputError("Unbekanntes Papierformat: {paper}", paper=paper_size)
     paper = PAPER_SIZES[paper_size]
     book_size = (paper[1] / 2, paper[0])
     if book_size_mm is not None:
         if len(book_size_mm) != 2 or any(
             not math.isfinite(value) or value <= 0 for value in book_size_mm
         ):
-            raise ValueError("Buchseitenbreite und -höhe müssen positive, endliche Maße sein.")
+            raise InputError("Buchseitenbreite und -höhe müssen positive, endliche Maße sein.")
         book_size = (book_size_mm[0] * POINTS_PER_MM, book_size_mm[1] * POINTS_PER_MM)
         if book_size[0] > paper[1] / 2 + 1e-8 or book_size[1] > paper[0] + 1e-8:
-            raise ValueError("Das Buchseitenformat passt nicht auf einen halben Druckbogen.")
+            raise InputError("Das Buchseitenformat passt nicht auf einen halben Druckbogen.")
 
     with _open_pdf(source, password) as reader:
         plan = make_plan(
@@ -355,7 +356,9 @@ def impose_pdf(
             )
             (staging / "Druckhinweise.txt").write_text(instructions, encoding="utf-8")
             if destination.exists() or destination.is_symlink():
-                raise FileExistsError(f"Zielordner wurde inzwischen angelegt: {destination}")
+                raise OutputExistsError(
+                    "Zielordner wurde inzwischen angelegt: {path}", path=destination
+                )
             staging.rename(destination)
 
     return ExportResult(destination, tuple(destination / name for name in file_names), plan)
