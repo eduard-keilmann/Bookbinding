@@ -48,6 +48,8 @@ class BookbindingApp:
         self.info: PdfInfo | None = None
         self.last_output: Path | None = None
         self.busy = False
+        self.about_window: tk.Toplevel | None = None
+        self._about_image: tk.PhotoImage | None = None
         self.results: Queue[ExportResult | Exception] = Queue()
 
         self.file_name = tk.StringVar(value=self.tr("Noch keine PDF ausgewählt"))
@@ -247,11 +249,35 @@ class BookbindingApp:
         return frame
 
     def _show_about(self) -> None:
-        messagebox.showinfo(
-            self.tr("Über Bookbinding"),
-            self.tr("Bookbinding\nEntwickelt von {author}", author="Eduard Keilmann"),
-            parent=self.root,
-        )
+        if self.about_window is not None and self.about_window.winfo_exists():
+            self.about_window.lift()
+            return
+        if self._about_image is None:
+            image_path = Path(__file__).parent / "assets" / "bookbinding.png"
+            # Load the PNG bytes explicitly; native file loading can substitute an app icon.
+            image = tk.PhotoImage(master=self.root, data=image_path.read_bytes(), format="png")
+            scale = max(1, (max(image.width(), image.height()) + 191) // 192)
+            self._about_image = image.subsample(scale)
+
+        dialog = tk.Toplevel(self.root)
+        self.about_window = dialog
+        dialog.title(self.tr("Über Bookbinding"))
+        dialog.transient(self.root)
+        dialog.resizable(False, False)
+        content = ttk.Frame(dialog, padding=24)
+        content.grid()
+        ttk.Label(content, image=self._about_image).grid(row=0, column=0, pady=(0, 12))
+        ttk.Label(
+            content,
+            name="credit",
+            text=self.tr("Bookbinding\nEntwickelt von {author}", author="Eduard Keilmann"),
+            justify="center",
+        ).grid(row=1, column=0, pady=(0, 18))
+        close = ttk.Button(content, name="close", text=self.tr("Schließen"), command=dialog.destroy)
+        close.grid(row=2, column=0)
+        dialog.bind("<Escape>", lambda event: dialog.destroy())
+        dialog.bind("<Return>", lambda event: dialog.destroy())
+        close.focus_set()
 
     def toggle_language(self) -> None:
         self.translator.language = "de" if self.translator.language == "en" else "en"

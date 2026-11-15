@@ -5,6 +5,7 @@ Unknown messages fail immediately so missing translations cannot go unnoticed.
 """
 
 ENGLISH = {
+    "Schließen": "Close",
     "Hilfe": "Help",
     "Über Bookbinding": "About Bookbinding",
     "Bookbinding\nEntwickelt von {author}": "Bookbinding\nCreated by {author}",

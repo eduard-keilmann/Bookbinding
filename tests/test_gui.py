@@ -96,17 +96,33 @@ def test_language_button_preserves_loaded_pdf_and_custom_settings(app, pdf_facto
     assert app.mode.get() == "custom"
 
 
-def test_about_menu_shows_author_in_both_languages(app, monkeypatch):
-    from bookbinding import gui
-
-    shown = []
-    monkeypatch.setattr(
-        gui.messagebox, "showinfo", lambda title, message, **kwargs: shown.append((title, message))
-    )
-    assert app.help_menu.entrycget(0, "label") == "About Bookbinding"
+@pytest.mark.parametrize(
+    ("language", "title", "credit", "close_label"),
+    [
+        ("en", "About Bookbinding", "Bookbinding\nCreated by Eduard Keilmann", "Close"),
+        ("de", "Über Bookbinding", "Bookbinding\nEntwickelt von Eduard Keilmann", "Schließen"),
+    ],
+)
+def test_about_menu_shows_illustration_and_author(app, language, title, credit, close_label):
+    if language == "de":
+        app.language_button.invoke()
     app.help_menu.invoke(0)
-    assert shown[-1] == ("About Bookbinding", "Bookbinding\nCreated by Eduard Keilmann")
-    app.language_button.invoke()
-    assert app.help_menu.entrycget(0, "label") == "Über Bookbinding"
+    dialog = app.about_window
+    assert dialog.title() == title
+    content = dialog.winfo_children()[0]
+    assert content.nametowidget("credit")["text"] == credit
+    assert content.nametowidget("close")["text"] == close_label
+    illustration = content.winfo_children()[0]
+    assert str(illustration["image"])
+    # The bundled 1254 px illustration becomes 180 px after integer subsampling.
+    # Native file loading previously substituted a 716 px application icon.
+    assert app._about_image.width() == 180
+    assert app._about_image.height() == 180
+    assert app._about_image.get(90, 90) != (0, 0, 0)
     app.help_menu.invoke(0)
-    assert shown[-1] == ("Über Bookbinding", "Bookbinding\nEntwickelt von Eduard Keilmann")
+    assert app.about_window is dialog
+    content.nametowidget("close").invoke()
+    assert not dialog.winfo_exists()
+    app.help_menu.invoke(0)
+    assert app.about_window.winfo_exists()
+    assert app.about_window is not dialog
