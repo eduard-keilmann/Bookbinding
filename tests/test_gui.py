@@ -94,3 +94,19 @@ def test_language_button_preserves_loaded_pdf_and_custom_settings(app, pdf_facto
     assert app.open_button["text"] == "Open PDF …"
     assert "Source pages:" in app.preview.get()
     assert app.mode.get() == "custom"
+
+
+def test_about_menu_shows_author_in_both_languages(app, monkeypatch):
+    from bookbinding import gui
+
+    shown = []
+    monkeypatch.setattr(
+        gui.messagebox, "showinfo", lambda title, message, **kwargs: shown.append((title, message))
+    )
+    assert app.help_menu.entrycget(0, "label") == "About Bookbinding"
+    app.help_menu.invoke(0)
+    assert shown[-1] == ("About Bookbinding", "Bookbinding\nCreated by Eduard Keilmann")
+    app.language_button.invoke()
+    assert app.help_menu.entrycget(0, "label") == "Über Bookbinding"
+    app.help_menu.invoke(0)
+    assert shown[-1] == ("Über Bookbinding", "Bookbinding\nEntwickelt von Eduard Keilmann")

@@ -5,6 +5,9 @@ Unknown messages fail immediately so missing translations cannot go unnoticed.
 """
 
 ENGLISH = {
+    "Hilfe": "Help",
+    "Über Bookbinding": "About Bookbinding",
+    "Bookbinding\nEntwickelt von {author}": "Bookbinding\nCreated by {author}",
     ("Bookbinding · PDF-Lagen für die Fadenheftung"): (
         "Bookbinding · PDF signatures for sewn binding"
     ),

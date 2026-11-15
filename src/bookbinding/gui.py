@@ -70,6 +70,12 @@ class BookbindingApp:
         root.title(self.tr("Bookbinding · PDF-Lagen für die Fadenheftung"))
         root.minsize(780, 660)
         root.protocol("WM_DELETE_WINDOW", self._close)
+        self.menu_bar = tk.Menu(root, tearoff=False)
+        # The special name lets macOS recognize its native Help menu.
+        self.help_menu = tk.Menu(self.menu_bar, name="help", tearoff=False)
+        self.help_menu.add_command(command=self._show_about)
+        self.menu_bar.add_cascade(menu=self.help_menu)
+        root.configure(menu=self.menu_bar)
         outer = ttk.Frame(root, padding=18)
         outer.grid(sticky="nsew")
         root.columnconfigure(0, weight=1)
@@ -240,6 +246,13 @@ class BookbindingApp:
         self._frames.append((frame, message))
         return frame
 
+    def _show_about(self) -> None:
+        messagebox.showinfo(
+            self.tr("Über Bookbinding"),
+            self.tr("Bookbinding\nEntwickelt von {author}", author="Eduard Keilmann"),
+            parent=self.root,
+        )
+
     def toggle_language(self) -> None:
         self.translator.language = "de" if self.translator.language == "en" else "en"
         self._apply_language()
@@ -251,6 +264,8 @@ class BookbindingApp:
         for frame, message in self._frames:
             frame.configure(text=self.tr(message))
         self.root.title(self.tr("Bookbinding · PDF-Lagen für die Fadenheftung"))
+        self.menu_bar.entryconfigure(0, label=self.tr("Hilfe"))
+        self.help_menu.entryconfigure(0, label=self.tr("Über Bookbinding"))
         self.notebook.tab(0, text=self.tr("Lagen und Druck"))
         self.notebook.tab(1, text=self.tr("Papier und Buchformat"))
         self.language_button.configure(
